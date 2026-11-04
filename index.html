@@ -6,228 +6,195 @@
 <title>胖达龙类目 · 特别开款</title>
 <style>
 :root{
-  --ink:#0F1519; --sub:#59636B; --line:#E3E8EA; --bg:#F6F7F6; --card:#fff;
-  --knit:#0E7C5A; --woven:#23406E; --linen:#A4562A;
-  --accent:#0E7C5A;
+  --ink:#0F1519; --sub:#5C666D; --line:#E4E8EA; --bg:#F6F7F6; --card:#fff;
+  --knit:#0E7C5A; --woven:#23406E; --linen:#A4562A; --accent:#0E7C5A;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:16px/1.6 "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
   -webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wrap{display:flex;align-items:flex-start}
 
-/* ---------- top bar ---------- */
-.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
-  height:64px;padding:0 28px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+/* ---------------- 左侧导航 ---------------- */
+.side{position:sticky;top:0;height:100vh;flex:0 0 258px;width:258px;
+  background:#fff;border-right:1px solid var(--line);padding:26px 18px 20px;
+  display:flex;flex-direction:column;gap:22px;overflow-y:auto;z-index:30}
+.brand{font-size:19px;font-weight:800;line-height:1.35;letter-spacing:.01em}
+.brand span{display:block;font-size:12px;font-weight:600;color:#96A1A7;letter-spacing:.14em;
+  margin-top:6px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav .lbl{font-size:11px;font-weight:800;letter-spacing:.14em;color:#A6B1B6;margin:0 0 8px 2px}
+.nav a{display:flex;align-items:baseline;gap:9px;padding:10px 10px;border-radius:9px;
+  font-size:15px;color:#2B373E;transition:.15s}
+.nav a:hover{background:#F2F5F4}
+.nav a.on{background:#EAF3EF;color:#0B5F45;font-weight:700}
+.nav a i{font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#A6B1B6;
+  min-width:16px}
+.nav a b{margin-left:auto;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#96A1A7;
+  font-weight:700}
+
+.qbox{margin-top:auto;border-top:1px solid var(--line);padding-top:18px}
+.qbox .qt{font-size:15px;font-weight:800;letter-spacing:.02em}
+.qbox .qd{margin:8px 0 12px;font-size:12.5px;line-height:1.75;color:#6C787F}
+.qbox .qd b{color:#16241D;background:#EAF3EF;border-radius:4px;padding:1px 5px;font-weight:800}
+.qbtn{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:var(--accent);color:#fff;border-radius:10px;padding:12px 14px;
+  font-size:15px;font-weight:800;transition:.15s}
+.qbtn:hover{background:#0B6448}
+.qbtn span{transition:transform .15s}
+.qbtn:hover span{transform:translateX(3px)}
+.qhint{margin:10px 0 0;font-size:11.5px;line-height:1.7;color:#9CA7AD}
+.side .sfoot{margin-top:14px;font-size:11px;color:#B3BCC1;letter-spacing:.04em}
+
+/* ---------------- 主区 ---------------- */
+main{flex:1;min-width:0;padding:0 0 40px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;
+  padding:14px 30px;background:rgba(246,247,246,.92);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line)}
-.brand{font-size:17px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
-.brand .dot{color:var(--accent);margin:0 4px}
-.jump{display:flex;gap:8px;margin-left:auto}
-.jump a{font-size:14px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);
-  color:var(--sub);white-space:nowrap;transition:.15s}
-.jump a:hover{background:#EEF3F0;color:var(--ink);border-color:#CBD7D1}
-.ansbtn{border:0;background:var(--ink);color:#fff;font-size:14px;font-weight:700;
-  padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
-.ansbtn b{display:inline-block;min-width:20px;margin-left:6px;padding:1px 6px;border-radius:999px;
-  background:var(--accent);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.topbar h1{margin:0;font-size:16px;font-weight:800;letter-spacing:.01em}
+.topbar .mini{margin-left:auto;font-size:13px;color:var(--sub)}
+.mobq{display:none}
 
-/* ---------- hero ---------- */
-.hero{padding:56px 28px 34px;max-width:1560px;margin:0 auto}
-.hero h1{margin:0;font-size:clamp(32px,4.4vw,58px);line-height:1.1;letter-spacing:-.02em;font-weight:800}
-.hero .sub{margin:16px 0 0;font-size:17px;color:var(--sub);max-width:900px}
-.rules{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero{padding:34px 30px 8px;max-width:1500px}
+.hero h2{margin:0;font-size:clamp(26px,3.2vw,40px);line-height:1.16;letter-spacing:-.02em;font-weight:800}
+.hero p{margin:12px 0 0;font-size:16px;color:var(--sub);max-width:820px}
+.rules{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
 .rule{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);
-  border-radius:12px;padding:10px 15px;font-size:15px;color:#28323A}
-.rule i{font-style:normal;font-size:12px;font-weight:800;letter-spacing:.06em;color:#fff;
+  border-radius:11px;padding:9px 14px;font-size:14.5px;color:#28323A}
+.rule i{font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:#fff;
   background:var(--ink);padding:2px 8px;border-radius:5px}
-.howto{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.howto span{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
-  border-radius:10px;padding:9px 14px 9px 10px;font-size:15px;color:#2B3840}
-.howto b{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:800;color:#fff;
-  background:var(--accent);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;flex:0 0 auto}
 
-/* ---------- section ---------- */
-.grp{max-width:1560px;margin:0 auto;padding:44px 28px 10px}
-.ghead{display:flex;align-items:flex-end;gap:18px;padding-bottom:16px;border-bottom:2px solid var(--ink)}
-.gidx{font-family:ui-monospace,Menlo,monospace;font-size:40px;line-height:.9;font-weight:700;color:#C9D2D5}
-.gtitle{font-size:clamp(22px,2.6vw,34px);font-weight:800;letter-spacing:-.01em;margin:0}
-.gmeta{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.tag{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;color:#fff;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:24px 18px;margin-top:26px}
+.grp{max-width:1500px;margin:0 auto;padding:38px 30px 6px}
+.ghead{display:flex;align-items:flex-end;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.gidx{font-family:ui-monospace,Menlo,monospace;font-size:38px;line-height:.88;font-weight:700;color:#C9D2D5}
+.gtitle{font-size:clamp(21px,2.4vw,30px);font-weight:800;letter-spacing:-.01em;margin:0}
+.gmeta{margin-left:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;color:#fff;white-space:nowrap}
 
-/* ---------- card ---------- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 10px 12px;
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:22px 16px;margin-top:24px}
+
+/* ---------------- 卡片：只有图 + 编号 ---------------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:9px 9px 11px;
   transition:box-shadow .18s,border-color .18s}
 .card:hover{box-shadow:0 14px 34px rgba(15,21,25,.10);border-color:#D3DCDF}
-.card.done{border-color:#B7DCCB;background:#FBFEFC}
-.pic{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;border-radius:11px;background:#EFF1F1;cursor:zoom-in}
-.pic img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.pic .idx{position:absolute;left:9px;top:9px;font-family:ui-monospace,Menlo,monospace;font-size:14px;
-  font-weight:700;letter-spacing:.06em;color:#fff;background:rgba(15,21,25,.86);padding:3px 9px;border-radius:6px}
-.pic .hint{position:absolute;right:9px;bottom:9px;font-size:12px;color:#fff;background:rgba(15,21,25,.6);
-  padding:3px 8px;border-radius:6px;opacity:0;transition:.2s}
+.pic{position:relative;margin:0;overflow:hidden;border-radius:10px;
+  background:#EFF1F1;cursor:zoom-in;padding-bottom:133.33%;height:0}
+.pic img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;
+  object-position:center;display:block}
+.pic .idx{position:absolute;left:9px;top:9px;font-family:ui-monospace,Menlo,monospace;font-size:16px;
+  font-weight:800;letter-spacing:.08em;color:#fff;background:rgba(15,21,25,.88);
+  padding:4px 10px;border-radius:7px}
+.pic .hint{position:absolute;right:9px;bottom:9px;font-size:11.5px;color:#fff;
+  background:rgba(15,21,25,.62);padding:3px 8px;border-radius:6px;opacity:0;transition:.2s}
 .pic:hover .hint{opacity:1}
 .lens{position:absolute;width:186px;height:186px;border-radius:10px;pointer-events:none;opacity:0;
   box-shadow:inset 0 0 0 2px rgba(255,255,255,.95),0 0 0 1px rgba(15,21,25,.35),0 16px 36px rgba(15,21,25,.38);
   background-repeat:no-repeat;background-color:#fff;transition:opacity .12s;z-index:3}
 .lens.on{opacity:1}
-.meta{display:flex;align-items:center;gap:8px;margin:10px 2px 8px;font-size:13px;color:var(--sub)}
-.meta .no{font-family:ui-monospace,Menlo,monospace;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:.04em}
-.meta .pg{color:#9AA5AA;font-size:12px}
-.meta .state{margin-left:auto;font-size:12px;color:#93A0A6}
-.card.done .meta .state{color:var(--knit);font-weight:700}
-.entry{display:flex;gap:8px}
-.entry input{flex:1;min-width:0;height:38px;border:1px solid var(--line);border-radius:9px;background:#FCFDFD;
-  padding:0 11px;font-size:14px;color:var(--ink);outline:none;font-family:inherit}
-.entry input:focus{border-color:var(--knit);background:#fff;box-shadow:0 0 0 3px rgba(14,124,90,.12)}
-.entry input::placeholder{color:#7E8B92}
-.entry input:focus::placeholder{color:#A6B1B6}
-.entry button{height:38px;padding:0 14px;border:0;border-radius:9px;background:var(--ink);color:#fff;
-  font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
-.entry button:hover{background:#000}
-.shown{display:none;align-items:center;gap:8px;font-size:13px;color:#1D3B31;margin-top:8px;flex-wrap:wrap}
-.card.done .shown{display:flex}
-.shown .spu{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14px;color:var(--knit);
-  background:#E9F6EF;padding:2px 8px;border-radius:6px;word-break:break-all}
-.shown .undo{background:none;border:0;color:#8A959B;text-decoration:underline;cursor:pointer;font-size:12px;padding:0}
 
-.gfoot{max-width:1560px;margin:0 auto;padding:26px 28px 60px;display:flex;justify-content:space-between;
-  gap:16px;font-size:13px;color:#95A1A7;border-top:1px solid var(--line);margin-top:26px}
+.cap{display:flex;align-items:center;gap:8px;margin:10px 3px 1px}
+.cap .no{font-family:ui-monospace,Menlo,monospace;font-size:19px;font-weight:800;letter-spacing:.08em;
+  cursor:pointer;padding:1px 2px;border-radius:4px;transition:.15s}
+.cap .no:hover{background:#EAF3EF;color:#0B5F45}
+.cap .pg{margin-left:auto;font-size:11.5px;color:#A6B1B6}
 
-/* ---------- panel ---------- */
-.panel{position:fixed;top:0;right:0;height:100%;width:min(560px,96vw);background:#fff;z-index:80;
-  border-left:1px solid var(--line);box-shadow:-30px 0 70px rgba(15,21,25,.16);
-  transform:translateX(102%);transition:transform .28s cubic-bezier(.3,.8,.3,1);display:flex;flex-direction:column}
-.panel.open{transform:none}
-.phead{display:flex;align-items:center;gap:12px;padding:20px 22px;border-bottom:1px solid var(--line)}
-.phead h2{margin:0;font-size:20px;font-weight:800}
-.phead .x{margin-left:auto;border:0;background:#F1F4F4;width:34px;height:34px;border-radius:50%;
-  font-size:20px;line-height:1;color:#4A565D;cursor:pointer}
-.pbody{padding:20px 22px 28px;overflow:auto;flex:1}
-.qlink{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#fff;
-  border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700}
-.qlink:hover{background:#000}
-.gotwo{width:100%;margin-top:10px;border:0;border-radius:11px;background:var(--accent);color:#fff;
-  padding:13px 16px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
-.gotwo:hover{background:#0B6448}
-.bridge{margin-top:9px;font-size:12.5px;font-weight:700;color:#8A959B;text-align:center}
-.bridge.on{color:#0E7C5A}
-.bridge.off{color:#A4562A}
-.qsteps{display:flex;flex-direction:column;gap:6px;margin-top:14px}
-.qsteps span{display:flex;align-items:baseline;gap:8px;font-size:13px;color:#66737A}
-.qsteps b{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#fff;background:#8A959B;
-  width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-  flex:0 0 auto;transform:translateY(2px)}
+.gfoot{max-width:1500px;margin:26px auto 0;padding:16px 30px 34px;display:flex;justify-content:space-between;
+  gap:14px;font-size:12.5px;color:#95A1A7;border-top:1px solid var(--line)}
 
-/* 接口设置 */
-.cfg{margin-top:16px;border:1px solid var(--line);border-radius:11px;background:#FBFCFC}
-.cfg summary{padding:11px 14px;font-size:13px;font-weight:700;color:#4A565D;cursor:pointer;list-style:none}
-.cfg summary::-webkit-details-marker{display:none}
-.cfg summary::before{content:"⚙";margin-right:8px;color:#9AA5AA}
-.cfgb{padding:6px 14px 16px;display:flex;flex-direction:column;gap:13px}
-.cfgb label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:#5A666D}
-.cfgb input,.cfgb select{height:34px;border:1px solid var(--line);border-radius:8px;padding:0 10px;
-  font-size:13px;font-family:inherit;background:#fff;outline:none;color:var(--ink)}
-.cfgb textarea{min-height:56px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;
-  font-size:13px;font-family:ui-monospace,Menlo,monospace;background:#fff;outline:none;resize:vertical}
-.cfgb input:focus,.cfgb select:focus,.cfgb textarea:focus{border-color:var(--accent)}
-.cfbrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:2px}
-.cfbrow button{flex:1;min-width:100px;height:36px;border:0;border-radius:8px;background:var(--ink);color:#fff;
-  font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
-.cfbrow button.ghost{background:#fff;color:#33424A;border:1px solid var(--line)}
-.cfbrow button.danger{color:#A23B2B;border-color:#EFD9D4}
-.cfgnote{margin:4px 0 0;font-size:12px;line-height:1.8;color:#8A959B}
-.field{margin-top:18px}
-.flabel{font-size:13px;font-weight:800;color:#4A565D;letter-spacing:.04em;margin-bottom:8px}
-.flabel em{font-style:normal;color:#9AA5AA;font-weight:600;margin-left:6px}
-textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line);border-radius:10px;
-  padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:14px;line-height:1.7;color:#12211B;
-  background:#FBFDFC;outline:none}
-.copy{margin-top:8px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;
-  font-size:13px;font-weight:700;color:#33424A;cursor:pointer;font-family:inherit}
-.copy:hover{background:#F2F6F4;border-color:#CFDBD6}
-.maplist{margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
-.maprow{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid #EFF2F2}
-.maprow:last-child{border-bottom:0}
-.maprow .n{font-family:ui-monospace,Menlo,monospace;font-weight:800}
-.maprow .s{flex:1;word-break:break-all;color:#1D3B31}
-.maprow .d{border:0;background:none;color:#A8B2B7;cursor:pointer;font-size:13px;text-decoration:underline}
-.empty{padding:16px 12px;color:#9AA5AA;font-size:14px;text-align:center}
-.pfoot{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
-.pfoot button{flex:1;min-width:120px;border:1px solid var(--line);background:#fff;border-radius:9px;
-  padding:11px 12px;font-size:14px;font-weight:700;color:#22303A;cursor:pointer;font-family:inherit}
-.pfoot button:hover{background:#F2F6F4}
-.pfoot .danger{color:#A23B2B;border-color:#EFD9D4}
-.scrim{position:fixed;inset:0;background:rgba(15,21,25,.35);z-index:70;opacity:0;pointer-events:none;transition:.25s}
-.scrim.on{opacity:1;pointer-events:auto}
-
-.pnote{font-size:12px;color:#9AA5AA;line-height:1.7;margin:14px 0 0}
-
-/* ---------- lightbox ---------- */
+/* ---------------- 大图 ---------------- */
 .lb{position:fixed;inset:0;background:rgba(9,12,14,.95);z-index:100;display:none;
   flex-direction:column;align-items:center;justify-content:center;touch-action:none}
 .lb.on{display:flex}
 .lb .stage{position:absolute;inset:56px 0 66px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .lb img{max-width:96vw;max-height:100%;will-change:transform;cursor:grab;user-select:none}
 .lb img.drag{cursor:grabbing}
-.lb .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:#fff;font-size:14px;letter-spacing:.04em}
-.lb .cap b{font-family:ui-monospace,Menlo,monospace;font-size:16px}
-.lb .cap span{color:#9AA6AC;margin-left:12px}
+.lb .cap2{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:#fff;font-size:14px;letter-spacing:.04em}
+.lb .cap2 b{font-family:ui-monospace,Menlo,monospace;font-size:17px}
+.lb .cap2 span{color:#9AA6AC;margin-left:12px}
 .lb .x{position:absolute;top:16px;right:20px;width:42px;height:42px;border-radius:50%;border:0;
   background:rgba(255,255,255,.12);color:#fff;font-size:22px;cursor:pointer}
 .lb .zoom{position:absolute;top:16px;left:20px;display:flex;gap:8px}
 .lb .zoom button{width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.12);
   color:#fff;font-size:18px;cursor:pointer;font-family:inherit}
+.lb .nav2{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:70px;border:0;
+  background:rgba(255,255,255,.10);color:#fff;font-size:24px;cursor:pointer;border-radius:10px}
+.lb .nav2.prev{left:14px}
+.lb .nav2.next{right:14px}
 
-/* ---------- toast ---------- */
 .toast{position:fixed;left:50%;bottom:36px;transform:translate(-50%,20px);background:var(--ink);color:#fff;
   font-size:14px;font-weight:600;padding:11px 20px;border-radius:999px;z-index:120;opacity:0;
   pointer-events:none;transition:.22s}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
-@media(max-width:900px){
-  .top{padding:0 16px;gap:10px}
-  .jump{display:none}
-  .hero{padding:34px 16px 22px}
-  .grp{padding:30px 16px 0}
-  .gfoot{padding:22px 16px 46px;flex-direction:column}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 12px}
-  .card{padding:8px 8px 10px;border-radius:13px}
-  .meta{font-size:12px}
-  .entry{flex-wrap:wrap}
-  .entry button{width:100%}
+/* ---------------- 窄屏 ---------------- */
+@media(max-width:1024px){
+  .wrap{display:block}
+  .side{position:static;height:auto;width:auto;flex:none;border-right:0;border-bottom:1px solid var(--line);
+    padding:14px 16px;gap:12px}
+  .brand{font-size:16px}
+  .brand span{display:none}
+  .nav{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px}
+  .nav .lbl{display:none}
+  .nav a{padding:7px 11px;font-size:13.5px;white-space:nowrap;border:1px solid var(--line);border-radius:999px}
+  .nav a b{display:none}
+  .qbox{margin-top:0;border-top:0;padding-top:0}
+  .qbox .qd,.qhint,.side .sfoot{display:none}
+  .qbtn{padding:11px 14px;font-size:14px}
+  .topbar{padding:11px 16px}
+  .topbar h1{font-size:14px}
+  .hero{padding:24px 16px 4px}
+  .grp{padding:26px 16px 4px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px 11px}
+  .card{padding:7px 7px 9px;border-radius:12px}
+  .cap .no{font-size:16px}
+  .cap .pg{display:none}
+  .gfoot{padding:14px 16px 30px;flex-direction:column}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="brand">胖达龙类目<span class="dot">·</span>特别开款</div>
-  <nav class="jump">
-    <a href="#g-knit">针织 40</a>
-    <a href="#g-woven">梭织 40</a>
-    <a href="#g-linen">亚麻 20</a>
-  </nav>
-  <button class="ansbtn" id="openPanel">问卷答案<b id="cnt">0</b></button>
-</header>
+<div class="wrap">
+  <aside class="side">
+    <div class="brand">胖达龙类目<br>特别开款<span>PANDALONG · 100 STYLES</span></div>
 
-<section class="hero">
-  <h1>胖达龙类目 · 特别开款</h1>
-  <p class="sub">共 100 款合集，编号 001–100。图片来自原始设计稿的高清原图，鼠标停留即弹出方块放大镜，可看清织纹、组织与面料细节。</p>
-  <div class="rules">
-    <div class="rule"><i>针织</i>不含日本棉、健康布（空气层）、毛圈布</div>
-    <div class="rule"><i>梭织</i>氨纶含量 ≤ 10%</div>
-    <div class="rule"><i>全部</i>不得有 2 个及以上翻盖口袋</div>
-  </div>
-  <div class="howto">
-    <span><b>1</b>鼠标停留图片，方块内放大看面料</span>
-    <span><b>2</b>开出同款后，在图下填写对应 SPU 并提交</span>
-    <span><b>3</b>点右上「问卷答案」，编号与 SPU 已自动填好</span>
-  </div>
-</section>
+    <nav class="nav">
+      <p class="lbl">款式目录</p>
+      <a href="#g-knit" data-t="g-knit"><i>01</i>针织非束脚长裤<b>40</b></a>
+      <a href="#g-woven" data-t="g-woven"><i>02</i>梭织非束脚长裤<b>40</b></a>
+      <a href="#g-linen" data-t="g-linen"><i>03</i>亚麻 / 仿亚麻<b>20</b></a>
+    </nav>
+
+    <div class="qbox">
+      <div class="qt">问卷提交</div>
+      <p class="qd">看图时记住 <b>图片编号</b> 和你要开的 <b>SPU</b>，点下面按钮到问卷里填这两项。</p>
+      <a class="qbtn" href="https://seller.kuajingmaihuo.com/questionnaire?surveyId=244535225837"
+         target="_blank" rel="noopener">去填写问卷 <span>→</span></a>
+      <p class="qhint">问卷要填两项：① 图片编号（如 023）　② 对应 SPU</p>
+      <div class="sfoot">共 100 款 · 编号 001–100</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <h1>胖达龙类目 · 特别开款</h1>
+      <span class="mini">鼠标停留看面料 · 点图看大图 · 点编号复制</span>
+      <a class="qbtn mobq" href="https://seller.kuajingmaihuo.com/questionnaire?surveyId=244535225837"
+         target="_blank" rel="noopener">问卷提交 <span>→</span></a>
+    </div>
+
+    <section class="hero">
+      <h2>100 款开款合集</h2>
+      <p>编号 001–100，鼠标停在图上即方块放大，看清织纹与面料细节。开出同款后，把图片编号和 SPU 填到问卷里。</p>
+      <div class="rules">
+        <div class="rule"><i>针织</i>不含日本棉、健康布（空气层）、毛圈布</div>
+        <div class="rule"><i>梭织</i>氨纶含量 ≤ 10%</div>
+        <div class="rule"><i>全部</i>不得有 2 个及以上翻盖口袋</div>
+      </div>
+    </section>
 
 <section class="grp" id="g-knit">
   <div class="ghead">
@@ -249,13 +216,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">001</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 001 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">001</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="002">
   <figure class="pic" data-no="002">
@@ -265,13 +226,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">002</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 002 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">002</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="003">
   <figure class="pic" data-no="003">
@@ -281,13 +236,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">003</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 003 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">003</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="004">
   <figure class="pic" data-no="004">
@@ -297,13 +246,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">004</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 004 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">004</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="005">
   <figure class="pic" data-no="005">
@@ -313,13 +256,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">005</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 005 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">005</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="006">
   <figure class="pic" data-no="006">
@@ -329,13 +266,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">006</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 006 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">006</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="007">
   <figure class="pic" data-no="007">
@@ -345,13 +276,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">007</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 007 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">007</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="008">
   <figure class="pic" data-no="008">
@@ -361,13 +286,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">008</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 008 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">008</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="009">
   <figure class="pic" data-no="009">
@@ -377,13 +296,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">009</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 009 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">009</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="010">
   <figure class="pic" data-no="010">
@@ -393,13 +306,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">010</span><span class="pg">原稿第 1 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 010 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">010</span><span class="pg">原稿第 1 页</span></div>
 </article>
     <article class="card" data-no="011">
   <figure class="pic" data-no="011">
@@ -409,13 +316,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">011</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 011 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">011</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="012">
   <figure class="pic" data-no="012">
@@ -425,13 +326,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">012</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 012 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">012</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="013">
   <figure class="pic" data-no="013">
@@ -441,13 +336,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">013</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 013 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">013</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="014">
   <figure class="pic" data-no="014">
@@ -457,13 +346,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">014</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 014 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">014</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="015">
   <figure class="pic" data-no="015">
@@ -473,13 +356,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">015</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 015 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">015</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="016">
   <figure class="pic" data-no="016">
@@ -489,13 +366,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">016</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 016 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">016</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="017">
   <figure class="pic" data-no="017">
@@ -505,13 +376,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">017</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 017 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">017</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="018">
   <figure class="pic" data-no="018">
@@ -521,13 +386,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">018</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 018 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">018</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="019">
   <figure class="pic" data-no="019">
@@ -537,13 +396,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">019</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 019 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">019</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="020">
   <figure class="pic" data-no="020">
@@ -553,13 +406,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">020</span><span class="pg">原稿第 2 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 020 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">020</span><span class="pg">原稿第 2 页</span></div>
 </article>
     <article class="card" data-no="021">
   <figure class="pic" data-no="021">
@@ -569,13 +416,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">021</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 021 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">021</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="022">
   <figure class="pic" data-no="022">
@@ -585,13 +426,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">022</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 022 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">022</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="023">
   <figure class="pic" data-no="023">
@@ -601,13 +436,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">023</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 023 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">023</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="024">
   <figure class="pic" data-no="024">
@@ -617,13 +446,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">024</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 024 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">024</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="025">
   <figure class="pic" data-no="025">
@@ -633,13 +456,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">025</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 025 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">025</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="026">
   <figure class="pic" data-no="026">
@@ -649,13 +466,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">026</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 026 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">026</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="027">
   <figure class="pic" data-no="027">
@@ -665,13 +476,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">027</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 027 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">027</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="028">
   <figure class="pic" data-no="028">
@@ -681,13 +486,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">028</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 028 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">028</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="029">
   <figure class="pic" data-no="029">
@@ -697,13 +496,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">029</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 029 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">029</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="030">
   <figure class="pic" data-no="030">
@@ -713,13 +506,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">030</span><span class="pg">原稿第 3 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 030 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">030</span><span class="pg">原稿第 3 页</span></div>
 </article>
     <article class="card" data-no="031">
   <figure class="pic" data-no="031">
@@ -729,13 +516,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">031</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 031 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">031</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="032">
   <figure class="pic" data-no="032">
@@ -745,13 +526,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">032</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 032 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">032</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="033">
   <figure class="pic" data-no="033">
@@ -761,13 +536,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">033</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 033 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">033</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="034">
   <figure class="pic" data-no="034">
@@ -777,13 +546,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">034</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 034 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">034</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="035">
   <figure class="pic" data-no="035">
@@ -793,13 +556,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">035</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 035 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">035</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="036">
   <figure class="pic" data-no="036">
@@ -809,13 +566,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">036</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 036 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">036</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="037">
   <figure class="pic" data-no="037">
@@ -825,13 +576,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">037</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 037 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">037</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="038">
   <figure class="pic" data-no="038">
@@ -841,13 +586,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">038</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 038 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">038</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="039">
   <figure class="pic" data-no="039">
@@ -857,13 +596,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">039</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 039 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">039</span><span class="pg">原稿第 4 页</span></div>
 </article>
     <article class="card" data-no="040">
   <figure class="pic" data-no="040">
@@ -873,13 +606,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">040</span><span class="pg">原稿第 4 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 040 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">040</span><span class="pg">原稿第 4 页</span></div>
 </article>
   </div>
   <div class="gfoot"><span>针织非束脚长裤</span><span>001–040 · 40 款 · 第 1–4 页</span></div>
@@ -904,13 +631,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">041</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 041 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">041</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="042">
   <figure class="pic" data-no="042">
@@ -920,13 +641,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">042</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 042 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">042</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="043">
   <figure class="pic" data-no="043">
@@ -936,13 +651,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">043</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 043 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">043</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="044">
   <figure class="pic" data-no="044">
@@ -952,13 +661,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">044</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 044 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">044</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="045">
   <figure class="pic" data-no="045">
@@ -968,13 +671,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">045</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 045 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">045</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="046">
   <figure class="pic" data-no="046">
@@ -984,13 +681,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">046</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 046 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">046</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="047">
   <figure class="pic" data-no="047">
@@ -1000,13 +691,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">047</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 047 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">047</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="048">
   <figure class="pic" data-no="048">
@@ -1016,13 +701,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">048</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 048 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">048</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="049">
   <figure class="pic" data-no="049">
@@ -1032,13 +711,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">049</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 049 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">049</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="050">
   <figure class="pic" data-no="050">
@@ -1048,13 +721,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">050</span><span class="pg">原稿第 5 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 050 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">050</span><span class="pg">原稿第 5 页</span></div>
 </article>
     <article class="card" data-no="051">
   <figure class="pic" data-no="051">
@@ -1064,13 +731,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">051</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 051 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">051</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="052">
   <figure class="pic" data-no="052">
@@ -1080,13 +741,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">052</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 052 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">052</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="053">
   <figure class="pic" data-no="053">
@@ -1096,13 +751,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">053</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 053 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">053</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="054">
   <figure class="pic" data-no="054">
@@ -1112,13 +761,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">054</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 054 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">054</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="055">
   <figure class="pic" data-no="055">
@@ -1128,13 +771,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">055</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 055 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">055</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="056">
   <figure class="pic" data-no="056">
@@ -1144,13 +781,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">056</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 056 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">056</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="057">
   <figure class="pic" data-no="057">
@@ -1160,13 +791,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">057</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 057 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">057</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="058">
   <figure class="pic" data-no="058">
@@ -1176,13 +801,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">058</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 058 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">058</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="059">
   <figure class="pic" data-no="059">
@@ -1192,13 +811,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">059</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 059 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">059</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="060">
   <figure class="pic" data-no="060">
@@ -1208,13 +821,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">060</span><span class="pg">原稿第 6 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 060 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">060</span><span class="pg">原稿第 6 页</span></div>
 </article>
     <article class="card" data-no="061">
   <figure class="pic" data-no="061">
@@ -1224,13 +831,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">061</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 061 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">061</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="062">
   <figure class="pic" data-no="062">
@@ -1240,13 +841,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">062</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 062 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">062</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="063">
   <figure class="pic" data-no="063">
@@ -1256,13 +851,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">063</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 063 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">063</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="064">
   <figure class="pic" data-no="064">
@@ -1272,13 +861,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">064</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 064 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">064</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="065">
   <figure class="pic" data-no="065">
@@ -1288,13 +871,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">065</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 065 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">065</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="066">
   <figure class="pic" data-no="066">
@@ -1304,13 +881,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">066</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 066 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">066</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="067">
   <figure class="pic" data-no="067">
@@ -1320,13 +891,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">067</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 067 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">067</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="068">
   <figure class="pic" data-no="068">
@@ -1336,13 +901,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">068</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 068 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">068</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="069">
   <figure class="pic" data-no="069">
@@ -1352,13 +911,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">069</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 069 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">069</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="070">
   <figure class="pic" data-no="070">
@@ -1368,13 +921,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">070</span><span class="pg">原稿第 7 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 070 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">070</span><span class="pg">原稿第 7 页</span></div>
 </article>
     <article class="card" data-no="071">
   <figure class="pic" data-no="071">
@@ -1384,13 +931,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">071</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 071 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">071</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="072">
   <figure class="pic" data-no="072">
@@ -1400,13 +941,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">072</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 072 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">072</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="073">
   <figure class="pic" data-no="073">
@@ -1416,13 +951,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">073</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 073 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">073</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="074">
   <figure class="pic" data-no="074">
@@ -1432,13 +961,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">074</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 074 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">074</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="075">
   <figure class="pic" data-no="075">
@@ -1448,13 +971,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">075</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 075 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">075</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="076">
   <figure class="pic" data-no="076">
@@ -1464,13 +981,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">076</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 076 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">076</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="077">
   <figure class="pic" data-no="077">
@@ -1480,13 +991,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">077</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 077 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">077</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="078">
   <figure class="pic" data-no="078">
@@ -1496,13 +1001,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">078</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 078 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">078</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="079">
   <figure class="pic" data-no="079">
@@ -1512,13 +1011,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">079</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 079 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">079</span><span class="pg">原稿第 8 页</span></div>
 </article>
     <article class="card" data-no="080">
   <figure class="pic" data-no="080">
@@ -1528,13 +1021,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">080</span><span class="pg">原稿第 8 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 080 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">080</span><span class="pg">原稿第 8 页</span></div>
 </article>
   </div>
   <div class="gfoot"><span>梭织非束脚长裤</span><span>041–080 · 40 款 · 第 5–8 页</span></div>
@@ -1559,13 +1046,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">081</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 081 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">081</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="082">
   <figure class="pic" data-no="082">
@@ -1575,13 +1056,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">082</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 082 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">082</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="083">
   <figure class="pic" data-no="083">
@@ -1591,13 +1066,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">083</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 083 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">083</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="084">
   <figure class="pic" data-no="084">
@@ -1607,13 +1076,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">084</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 084 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">084</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="085">
   <figure class="pic" data-no="085">
@@ -1623,13 +1086,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">085</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 085 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">085</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="086">
   <figure class="pic" data-no="086">
@@ -1639,13 +1096,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">086</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 086 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">086</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="087">
   <figure class="pic" data-no="087">
@@ -1655,13 +1106,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">087</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 087 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">087</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="088">
   <figure class="pic" data-no="088">
@@ -1671,13 +1116,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">088</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 088 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">088</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="089">
   <figure class="pic" data-no="089">
@@ -1687,13 +1126,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">089</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 089 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">089</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="090">
   <figure class="pic" data-no="090">
@@ -1703,13 +1136,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">090</span><span class="pg">原稿第 9 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 090 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">090</span><span class="pg">原稿第 9 页</span></div>
 </article>
     <article class="card" data-no="091">
   <figure class="pic" data-no="091">
@@ -1719,13 +1146,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">091</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 091 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">091</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="092">
   <figure class="pic" data-no="092">
@@ -1735,13 +1156,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">092</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 092 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">092</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="093">
   <figure class="pic" data-no="093">
@@ -1751,13 +1166,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">093</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 093 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">093</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="094">
   <figure class="pic" data-no="094">
@@ -1767,13 +1176,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">094</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 094 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">094</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="095">
   <figure class="pic" data-no="095">
@@ -1783,13 +1186,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">095</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 095 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">095</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="096">
   <figure class="pic" data-no="096">
@@ -1799,13 +1196,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">096</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 096 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">096</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="097">
   <figure class="pic" data-no="097">
@@ -1815,13 +1206,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">097</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 097 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">097</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="098">
   <figure class="pic" data-no="098">
@@ -1831,13 +1216,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">098</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 098 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">098</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="099">
   <figure class="pic" data-no="099">
@@ -1847,13 +1226,7 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">099</span><span class="pg">原稿第 10 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 099 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">099</span><span class="pg">原稿第 10 页</span></div>
 </article>
     <article class="card" data-no="100">
   <figure class="pic" data-no="100">
@@ -1863,527 +1236,82 @@ textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line)
     <span class="hint">点击看大图</span>
     <div class="lens"></div>
   </figure>
-  <div class="meta"><span class="no">100</span><span class="pg">原稿第 11 页</span><span class="state">未提交</span></div>
-  <div class="entry">
-    <input class="spu" type="text" inputmode="text" autocomplete="off" spellcheck="false"
-           placeholder="同款 SPU / 款号" aria-label="编号 100 的 SPU">
-    <button class="save" type="button">提交</button>
-  </div>
-  <div class="shown"><span>已开款</span><span class="spu"></span><button class="undo" type="button">撤销</button></div>
+  <div class="cap"><span class="no" title="点击复制编号">100</span><span class="pg">原稿第 11 页</span></div>
 </article>
   </div>
   <div class="gfoot"><span>亚麻 / 仿亚麻长裤</span><span>081–100 · 20 款 · 第 9–11 页</span></div>
 </section>
 
-<footer class="gfoot">
-  <span>胖达龙类目 · 特别开款 · 100 款</span>
-  <span>编号规则：001–040 针织 / 041–080 梭织 / 081–100 亚麻</span>
-</footer>
-
-<div class="scrim" id="scrim"></div>
-
-<aside class="panel" id="panel" aria-hidden="true">
-  <div class="phead">
-    <h2>问卷答案</h2>
-    <button class="x" id="closePanel" aria-label="关闭">×</button>
-  </div>
-  <div class="pbody">
-    <a class="qlink" href="https://seller.kuajingmaihuo.com/questionnaire?surveyId=244535225837" target="_blank" rel="noopener">
-      <span>打开问卷（surveyId 244535225837）</span><span>→</span>
-    </a>
-    <button class="gotwo" id="goSurvey">一键提交问卷</button>
-    <div class="bridge" id="bridgeState">提交通道：检测中…</div>
-    <div class="qsteps">
-      <span><b>1</b>通过中转服务打开本页 → 点上面按钮直接提交</span>
-      <span><b>2</b>直接双击 html 打开 → 自动退回复制粘贴流程</span>
-      <span><b>3</b>提交结果会即时提示成功或失败原因</span>
+    <div class="gfoot">
+      <span>胖达龙类目 · 特别开款 · 100 款</span>
+      <span>001–040 针织 / 041–080 梭织 / 081–100 亚麻</span>
     </div>
-
-    <details class="cfg" id="cfgBox">
-      <summary>问卷接口设置（设置一次即可自动提交）</summary>
-      <div class="cfgb">
-        <label>提交地址 action
-          <input id="cAction" type="text" placeholder="https://…/api/… 或 问卷提交 URL">
-        </label>
-        <label>提交方式
-          <select id="cMethod"><option value="POST">POST（表单提交）</option><option value="JSON">POST（JSON / fetch）</option><option value="GET">GET（参数拼在地址上）</option></select>
-        </label>
-        <label>填空题 1 字段名
-          <input id="cF1" type="text" placeholder="例如 q1 / field_1 / 题1">
-        </label>
-        <label>填空题 2 字段名
-          <input id="cF2" type="text" placeholder="例如 q2 / field_2 / 题2">
-        </label>
-        <label>附加固定字段（可选，每行 name=value）
-          <textarea id="cExtra" placeholder="表单提交：source=kaikuan&#10;JSON 提交：粘完整 JSON，用 {no} 和 {spu} 占位&#10;例如 {&quot;surveyId&quot;:&quot;244535225837&quot;,&quot;a1&quot;:&quot;{no}&quot;,&quot;a2&quot;:&quot;{spu}&quot;}"></textarea>
-        </label>
-        <div class="cfbrow">
-          <button id="cSave">保存设置</button>
-          <button id="cTest" class="ghost">试提交一次</button>
-          <button id="cClear" class="ghost danger">清除设置</button>
-        </div>
-        <p class="cfgnote">说明：只支持"表单直提"型问卷。若问卷提交依赖页面里的动态签名/防伪字段，纯网页无法自动生成，请改用下面的粘贴流程。</p>
-      </div>
-    </details>
-    <div class="field">
-      <div class="flabel">填空题 1 <em>已开款编号</em></div>
-      <textarea id="ansNo" readonly placeholder="提交后自动生成"></textarea>
-      <button class="copy" data-copy="ansNo">复制填空题 1</button>
-    </div>
-    <div class="field">
-      <div class="flabel">填空题 2 <em>对应 SPU，与上方编号一一对应</em></div>
-      <textarea id="ansSpu" readonly placeholder="提交后自动生成"></textarea>
-      <button class="copy" data-copy="ansSpu">复制填空题 2</button>
-    </div>
-    <div class="field">
-      <div class="flabel">已提交明细</div>
-      <div class="maplist" id="maplist"><div class="empty">还没有提交记录</div></div>
-    </div>
-    <div class="pfoot">
-      <button id="dlTxt">下载答案 TXT</button>
-      <button id="dlCsv">导出明细 CSV</button>
-      <button id="clearAll" class="danger">清空全部</button>
-    </div>
-    <p class="pnote">答案随填写保存在本机浏览器；换设备或清理缓存前，先「下载答案 TXT」再发回。</p>
-  </div>
-</aside>
+  </main>
+</div>
 
 <div class="lb" id="lb">
   <div class="stage" id="lbStage"><img id="lbImg" alt=""></div>
   <div class="zoom"><button id="zin">+</button><button id="zout">−</button><button id="zreset">⤾</button></div>
   <button class="x" id="lbClose">×</button>
-  <div class="cap"><b id="lbNo">001</b><span id="lbMeta"></span></div>
+  <button class="nav2 prev" id="lbPrev">‹</button>
+  <button class="nav2 next" id="lbNext">›</button>
+  <div class="cap2"><b id="lbNo">001</b><span id="lbMeta"></span></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 const DATA = [{"no":"001","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"002","cat":"knit","slide":1,"w":405,"h":539},{"no":"003","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"004","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"005","cat":"knit","slide":1,"w":405,"h":539},{"no":"006","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"007","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"008","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"009","cat":"knit","slide":1,"w":1340,"h":1785},{"no":"010","cat":"knit","slide":1,"w":405,"h":539},{"no":"011","cat":"knit","slide":2,"w":1340,"h":1785},{"no":"012","cat":"knit","slide":2,"w":405,"h":539},{"no":"013","cat":"knit","slide":2,"w":1340,"h":1785},{"no":"014","cat":"knit","slide":2,"w":1340,"h":1785},{"no":"015","cat":"knit","slide":2,"w":405,"h":539},{"no":"016","cat":"knit","slide":2,"w":1760,"h":2368},{"no":"017","cat":"knit","slide":2,"w":1340,"h":1785},{"no":"018","cat":"knit","slide":2,"w":1340,"h":1785},{"no":"019","cat":"knit","slide":2,"w":1760,"h":2368},{"no":"020","cat":"knit","slide":2,"w":1760,"h":2368},{"no":"021","cat":"knit","slide":3,"w":1340,"h":1785},{"no":"022","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"023","cat":"knit","slide":3,"w":1340,"h":1785},{"no":"024","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"025","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"026","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"027","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"028","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"029","cat":"knit","slide":3,"w":1340,"h":1785},{"no":"030","cat":"knit","slide":3,"w":1760,"h":2368},{"no":"031","cat":"knit","slide":4,"w":1760,"h":2368},{"no":"032","cat":"knit","slide":4,"w":1340,"h":1785},{"no":"033","cat":"knit","slide":4,"w":1760,"h":2368},{"no":"034","cat":"knit","slide":4,"w":1760,"h":2368},{"no":"035","cat":"knit","slide":4,"w":1340,"h":1785},{"no":"036","cat":"knit","slide":4,"w":1340,"h":1785},{"no":"037","cat":"knit","slide":4,"w":1760,"h":2368},{"no":"038","cat":"knit","slide":4,"w":1340,"h":1785},{"no":"039","cat":"knit","slide":4,"w":405,"h":539},{"no":"040","cat":"knit","slide":4,"w":1760,"h":2368},{"no":"041","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"042","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"043","cat":"woven","slide":5,"w":749,"h":999},{"no":"044","cat":"woven","slide":5,"w":405,"h":539},{"no":"045","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"046","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"047","cat":"woven","slide":5,"w":405,"h":539},{"no":"048","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"049","cat":"woven","slide":5,"w":405,"h":539},{"no":"050","cat":"woven","slide":5,"w":1340,"h":1785},{"no":"051","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"052","cat":"woven","slide":6,"w":405,"h":539},{"no":"053","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"054","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"055","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"056","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"057","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"058","cat":"woven","slide":6,"w":405,"h":539},{"no":"059","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"060","cat":"woven","slide":6,"w":1340,"h":1785},{"no":"061","cat":"woven","slide":7,"w":1340,"h":1785},{"no":"062","cat":"woven","slide":7,"w":1340,"h":1785},{"no":"063","cat":"woven","slide":7,"w":405,"h":539},{"no":"064","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"065","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"066","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"067","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"068","cat":"woven","slide":7,"w":405,"h":539},{"no":"069","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"070","cat":"woven","slide":7,"w":1760,"h":2368},{"no":"071","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"072","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"073","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"074","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"075","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"076","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"077","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"078","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"079","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"080","cat":"woven","slide":8,"w":1760,"h":2368},{"no":"081","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"082","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"083","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"084","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"085","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"086","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"087","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"088","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"089","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"090","cat":"linen","slide":9,"w":1340,"h":1785},{"no":"091","cat":"linen","slide":10,"w":1340,"h":1785},{"no":"092","cat":"linen","slide":10,"w":1773,"h":1773},{"no":"093","cat":"linen","slide":10,"w":1350,"h":1800},{"no":"094","cat":"linen","slide":10,"w":1350,"h":1800},{"no":"095","cat":"linen","slide":10,"w":1350,"h":1800},{"no":"096","cat":"linen","slide":10,"w":1350,"h":1800},{"no":"097","cat":"linen","slide":10,"w":1350,"h":1800},{"no":"098","cat":"linen","slide":10,"w":569,"h":498},{"no":"099","cat":"linen","slide":10,"w":950,"h":890},{"no":"100","cat":"linen","slide":11,"w":750,"h":750}];
-
-const SECTIONS = [
-  {id:'g-knit',  cat:'knit',  idx:'01', title:'针织非束脚长裤', pages:'第 1–4 页',  color:'var(--knit)' , tag:'针织'},
-  {id:'g-woven', cat:'woven', idx:'02', title:'梭织非束脚长裤', pages:'第 5–8 页',  color:'var(--woven)', tag:'梭织'},
-  {id:'g-linen', cat:'linen', idx:'03', title:'亚麻 / 仿亚麻长裤', pages:'第 9–11 页', color:'var(--linen)', tag:'亚麻'}
-];
-
 const IMG = no => 'assets/img/' + no + '.webp';
 const THUMB = no => 'assets/thumb/' + no + '.webp';
 
-/* 卡片由页面内静态渲染，脚本只负责交互 */
+const NAT = {};
+DATA.forEach(d => { NAT[d.no] = d; });
+const ALL = DATA.map(d => d.no);
 
-/* ---------------- 本地存储 ---------------- */
-const KEY = 'pdl_kaikuan_spu_v1';
-let store = {};
-try { store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { store = {}; }
-function persist(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
-
+/* ---------------- toast ---------------- */
 const toastEl = document.getElementById('toast');
 let tTimer;
 function toast(msg){
   toastEl.textContent = msg; toastEl.classList.add('on');
-  clearTimeout(tTimer); tTimer = setTimeout(()=>toastEl.classList.remove('on'), 1900);
+  clearTimeout(tTimer); tTimer = setTimeout(() => toastEl.classList.remove('on'), 2000);
 }
 
-/* ---------------- 提交 / 撤销 ---------------- */
-function renderCard(no){
-  const card = document.querySelector('.card[data-no="' + no + '"]');
-  if(!card) return;
-  const v = store[no];
-  if(v){
-    card.classList.add('done');
-    card.querySelector('.meta .state').textContent = '已提交';
-    card.querySelector('.shown .spu').textContent = v;
-    card.querySelector('.entry input').value = v;
-    card.querySelector('.save').textContent = '更新';
-  } else {
-    card.classList.remove('done');
-    card.querySelector('.meta .state').textContent = '未提交';
-    card.querySelector('.entry input').value = '';
-    card.querySelector('.save').textContent = '提交';
-  }
-}
-
-document.addEventListener('click', e => {
-  const save = e.target.closest('.save');
-  if(save){
-    const card = save.closest('.card');
-    const no = card.dataset.no;
-    const input = card.querySelector('.entry input');
-    const v = input.value.trim().replace(/\s+/g, ' ');
-    if(!v){ toast('请先填写编号 ' + no + ' 的 SPU'); input.focus(); return; }
-    store[no] = v; persist(); renderCard(no); syncPanel();
-    toast(loadCfg().action
-      ? '已记录 ' + no + ' → ' + v + '；点右上「问卷答案」→「一键提交问卷」即可自动提交'
-      : '已记录 ' + no + ' → ' + v + '，问卷答案已更新');
-    return;
-  }
-  const undo = e.target.closest('.undo');
-  if(undo){
-    const card = undo.closest('.card');
-    delete store[card.dataset.no]; persist(); renderCard(card.dataset.no); syncPanel();
-    toast('已撤销 ' + card.dataset.no);
-  }
-});
-
-/* ---------------- 问卷答案面板 ---------------- */
-const panel = document.getElementById('panel');
-const scrim = document.getElementById('scrim');
-function openPanel(){ panel.classList.add('open'); scrim.classList.add('on'); panel.setAttribute('aria-hidden','false'); }
-function closePanel(){ panel.classList.remove('open'); scrim.classList.remove('on'); panel.setAttribute('aria-hidden','true'); }
-document.getElementById('openPanel').onclick = openPanel;
-document.getElementById('closePanel').onclick = closePanel;
-scrim.onclick = closePanel;
-
-const ansNo = document.getElementById('ansNo');
-const ansSpu = document.getElementById('ansSpu');
-const maplist = document.getElementById('maplist');
-const cnt = document.getElementById('cnt');
-
-function submitted(){
-  return Object.keys(store).filter(k => store[k]).sort();
-}
-
-function syncPanel(){
-  const nos = submitted();
-  cnt.textContent = nos.length;
-  ansNo.value = nos.join('、');
-  ansSpu.value = nos.map(n => store[n]).join('、');
-  if(!nos.length){
-    maplist.innerHTML = '<div class="empty">还没有提交记录</div>';
-    return;
-  }
-  maplist.innerHTML = nos.map(n => {
-    const d = DATA.find(x => x.no === n) || {};
-    const cat = d.cat === 'knit' ? '针织' : d.cat === 'woven' ? '梭织' : '亚麻';
-    return `<div class="maprow"><span class="n">${n}</span>
-      <span class="s">${escapeHtml(store[n])}</span>
-      <span style="color:#9AA5AA;font-size:12px;white-space:nowrap">${cat} · 第${d.slide||''}页</span>
-      <button class="d" data-del="${n}">移除</button></div>`;
-  }).join('');
-}
-
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-maplist.addEventListener('click', e => {
-  const b = e.target.closest('[data-del]');
-  if(!b) return;
-  delete store[b.dataset.del]; persist(); renderCard(b.dataset.del); syncPanel();
-});
-
-/* 复制 */
+/* ---------------- 复制编号 ---------------- */
 async function copyText(txt){
-  if(!txt){ toast('还没有内容可复制'); return; }
-  try {
-    await navigator.clipboard.writeText(txt);
-    toast('已复制');
-  } catch(err){
+  try { await navigator.clipboard.writeText(txt); return true; }
+  catch(e){
     const ta = document.createElement('textarea');
     ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); toast('已复制'); } catch(e2){ toast('请手动选择文本复制'); }
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch(e2){}
     document.body.removeChild(ta);
+    return ok;
   }
 }
-document.querySelectorAll('[data-copy]').forEach(b => {
-  b.onclick = () => copyText(document.getElementById(b.dataset.copy).value);
+
+document.addEventListener('click', async e => {
+  const no = e.target.closest('.cap .no');
+  if(!no) return;
+  const v = no.textContent.trim();
+  const ok = await copyText(v);
+  toast(ok ? '已复制编号 ' + v + '，记得配上 SPU' : '复制失败，请手动记下 ' + v);
 });
 
-/* 一步到位：复制填空题 1 + 打开问卷（问卷提交本身在对方系统内完成） */
-const QURL = 'https://seller.kuajingmaihuo.com/questionnaire?surveyId=244535225837';
-
-/* ---------- 问卷自动提交（表单直提 / JSON / 中转服务） ---------- */
-const CFGKEY = 'pdl_survey_cfg_v1';
-const DEFCFG = {
-  action: 'https://seller.kuajingmaihuo.com/gmpapi/flower/survey/feedback/submit',
-  method: 'JSON',
-  f1: '', f2: '',
-  extra: '{"surveyId": 244535225837, "version": 1, "itemList": [{"itemId": 439018627, "value": "{no}"}, {"itemId": 439019793, "value": "{spu}"}]}'
-};
-function loadCfg(){
-  let c = {};
-  try { c = JSON.parse(localStorage.getItem(CFGKEY) || '{}') || {}; } catch(e){ c = {}; }
-  return Object.assign({}, DEFCFG, c);
-}
-function saveCfg(c){ try { localStorage.setItem(CFGKEY, JSON.stringify(c)); } catch(e){} }
-
-/* 提交通道探测：①同源服务器转发  ②浏览器扩展  ③直连  ④降级粘贴 */
-let extReady = false;
-let directOK = false;
-let serverReady = false;
-let pending = {};
-let seq = 0;
-
-window.addEventListener('message', e => {
-  if(e.source !== window || !e.data || typeof e.data !== 'object') return;
-  const d = e.data;
-  if(d.type === 'PDL_PONG'){ extReady = true; paintBridge(); }
-  if(d.type === 'PDL_RESULT' && pending[d.id]){
-    pending[d.id](d.res || {ok:false, msg:'扩展未响应'});
-    delete pending[d.id];
-  }
-});
-
-function pingExt(){ try { window.postMessage({type:'PDL_PING', v:'1'}, '*'); } catch(e){} }
-pingExt();
-setTimeout(pingExt, 800);
-setTimeout(pingExt, 2000);
-
-/* 同源转发探测：托管在服务器上时，这里返回 JSON 即视为可用 */
-(function probeServer(){
-  if(!location.protocol.startsWith('http')) return;
-  fetch('api/submit.php', {method:'GET', cache:'no-store'})
-    .then(r => r.ok ? r.json() : null)
-    .then(j => { if(j && j.ok){ serverReady = true; paintBridge(); } })
-    .catch(() => {});
-})();
-
-const bridgeEl = document.getElementById('bridgeState');
-function paintBridge(){
-  if(!bridgeEl) return;
-  bridgeEl.classList.remove('on','off');
-  if(serverReady){
-    bridgeEl.textContent = '提交通道：已就绪，点一下即自动提交，无需任何操作';
-    bridgeEl.classList.add('on');
-  } else if(extReady){
-    bridgeEl.textContent = '提交通道：已连接提交助手，可一键直接提交';
-    bridgeEl.classList.add('on');
-  } else if(directOK){
-    bridgeEl.textContent = '提交通道：直连模式，可一键直接提交';
-    bridgeEl.classList.add('on');
-  } else {
-    bridgeEl.textContent = '提交通道：未连接（点提交会复制内容并打开问卷）';
-    bridgeEl.classList.add('off');
-  }
-}
-paintBridge();
-
-/* 真正发一次请求：同源转发最省事，其次扩展，其次直连 */
-function sendOnce(url, body){
-  return new Promise(resolve => {
-    if(serverReady){
-      fetch('api/submit.php', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body
-      }).then(r => r.text().then(t => {
-        let ok = false;
-        try { ok = !!(JSON.parse(t) || {}).ok; } catch(e){}
-        resolve({ok, status:r.status, msg:ok ? '' : String(t).slice(0,160)});
-      })).catch(() => resolve({ok:false, msg:'转发服务无响应'}));
-      return;
-    }
-    if(extReady){
-      const id = 'r' + (++seq);
-      pending[id] = resolve;
-      window.postMessage({type:'PDL_SUBMIT', id, url, body}, '*');
-      setTimeout(() => {
-        if(pending[id]){ delete pending[id]; resolve({ok:false, msg:'提交助手超时'}); }
-      }, 25000);
-      return;
-    }
-    fetch(url, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body,
-      credentials: 'include'
-    }).then(r => r.text().then(t => {
-      let ok = r.ok;
-      try { const j = JSON.parse(t); if(j && (j.success === false || j.ok === false)) ok = false; } catch(e){}
-      directOK = true; paintBridge();
-      resolve({ok, status:r.status, msg:t.slice(0,180)});
-    })).catch(() => resolve({ok:false, blocked:true, msg:'浏览器跨域拦截'}));
-  });
-}
-
-function parseExtra(txt){
-  return String(txt || '').split('\n').map(s => s.trim()).filter(Boolean).map(line => {
-    const i = line.indexOf('=');
-    return i > 0 ? [line.slice(0, i).trim(), line.slice(i + 1).trim()] : null;
-  }).filter(Boolean);
-}
-
-function answerPairs(){
-  const nos = submitted();
-  return { nos, no: nos.join('、'), spu: nos.map(n => store[n]).join('、') };
-}
-
-function autoSubmit(){
-  const cfg = loadCfg();
-  const a = answerPairs();
-  if(!a.nos.length){ toast('还没有提交记录'); return false; }
-  if(!cfg.action){ return false; }
-  const f1 = cfg.f1 || 'q1', f2 = cfg.f2 || 'q2';
-  const extra = parseExtra(cfg.extra);
-
-  if((cfg.method || 'POST') === 'GET'){
-    let u;
-    try { u = new URL(cfg.action, location.href); } catch(e){ toast('提交地址格式不对'); return false; }
-    u.searchParams.set(f1, a.no);
-    u.searchParams.set(f2, a.spu);
-    extra.forEach(([k, v]) => u.searchParams.set(k, v));
-    window.open(u.toString(), '_blank', 'noopener');
-  } else if(cfg.method === 'JSON'){
-    const tpl = String(cfg.extra || '').trim();
-    if(!tpl){ toast('JSON 方式需要在附加字段里填 JSON 模板'); return false; }
-    const body = tpl.replace(/\{no\}/g, a.no).replace(/\{spu\}/g, a.spu);
-    try { JSON.parse(body); } catch(e){ toast('JSON 模板格式不对'); return false; }
-
-    toast('正在提交…');
-    sendOnce(cfg.action, body).then(res => {
-      if(res && res.ok){
-        toast('提交成功，问卷已记录 ' + a.nos.length + ' 组');
-      } else if(res && res.blocked){
-        window.open(QURL, '_blank', 'noopener');
-        copyText(ansNo.value).then(() => {
-          toast('浏览器拦了直连：已复制填空题 1 并打开问卷，请粘贴');
-        });
-      } else {
-        toast('提交失败：' + String((res && res.msg) || '未知原因').slice(0, 50));
-      }
-    });
-    return true;
-  } else {
-    // 跨域表单 POST 不受同源限制，可在新标签内完成提交
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = cfg.action;
-    form.target = '_blank';
-    form.acceptCharset = 'UTF-8';
-    form.style.display = 'none';
-    [[f1, a.no], [f2, a.spu]].concat(extra).forEach(([k, v]) => {
-      const el = document.createElement('input');
-      el.type = 'hidden'; el.name = k; el.value = v;
-      form.appendChild(el);
-    });
-    document.body.appendChild(form);
-    try { form.submit(); } catch(e){ form.remove(); toast('提交失败，请检查提交地址'); return false; }
-    setTimeout(() => form.remove(), 5000);
-  }
-  return true;
-}
-
-document.getElementById('goSurvey').onclick = () => {
-  if(!answerPairs().nos.length){ toast('还没有提交记录'); return; }
-  autoSubmit();
-};
-
-/* 设置面板 */
-const cfgEls = {
-  action: document.getElementById('cAction'),
-  method: document.getElementById('cMethod'),
-  f1: document.getElementById('cF1'),
-  f2: document.getElementById('cF2'),
-  extra: document.getElementById('cExtra')
-};
-function fillCfg(){
-  const c = loadCfg();
-  cfgEls.action.value = c.action || '';
-  cfgEls.method.value = c.method || 'POST';
-  cfgEls.f1.value = c.f1 || '';
-  cfgEls.f2.value = c.f2 || '';
-  cfgEls.extra.value = c.extra || '';
-}
-(function initCfg(){
-  fillCfg();
-  let custom = false;
-  try { custom = !!localStorage.getItem(CFGKEY); } catch(e){}
-  if(custom){ document.getElementById('cfgBox').open = true; }
-})();
-
-document.getElementById('cSave').onclick = () => {
-  const c = {
-    action: cfgEls.action.value.trim(),
-    method: cfgEls.method.value,
-    f1: cfgEls.f1.value.trim(),
-    f2: cfgEls.f2.value.trim(),
-    extra: cfgEls.extra.value
-  };
-  if(!c.action){ toast('请先填写提交地址'); return; }
-  saveCfg(c);
-  toast('设置已保存，之后点「一键提交问卷」即自动提交');
-};
-
-document.getElementById('cTest').onclick = () => {
-  if(!loadCfg().action){ toast('请先保存设置'); return; }
-  if(autoSubmit()) toast('已发起试提交，请查看新标签页结果');
-};
-
-document.getElementById('cClear').onclick = () => {
-  try { localStorage.removeItem(CFGKEY); } catch(e){}
-  fillCfg();
-  toast('已恢复默认接口设置');
-};
-
-/* 下载 */
-function download(name, text, mime){
-  const blob = new Blob(['\ufeff' + text], {type: mime || 'text/plain;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = name;
-  document.body.appendChild(a); a.click();
-  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 1200);
-}
-
-document.getElementById('dlTxt').onclick = () => {
-  const nos = submitted();
-  if(!nos.length){ toast('还没有提交记录'); return; }
-  const lines = [
-    '胖达龙类目 · 特别开款 —— 问卷答案',
-    '问卷地址：https://seller.kuajingmaihuo.com/questionnaire?surveyId=244535225837',
-    '生成时间：' + new Date().toLocaleString('zh-CN'),
-    '',
-    '【填空题 1】已开款编号',
-    nos.join('、'),
-    '',
-    '【填空题 2】对应 SPU',
-    nos.map(n => store[n]).join('、'),
-    '',
-    '【对应明细】',
-    ...nos.map(n => {
-      const d = DATA.find(x => x.no === n) || {};
-      return n + '  →  ' + store[n] + '   (' + (d.cat === 'knit' ? '针织' : d.cat === 'woven' ? '梭织' : '亚麻') + ' · 原稿第' + (d.slide||'') + '页)';
-    })
-  ];
-  download('胖达龙类目_特别开款_问卷答案.txt', lines.join('\r\n'));
-  toast('已下载 TXT');
-};
-
-document.getElementById('dlCsv').onclick = () => {
-  const nos = submitted();
-  if(!nos.length){ toast('还没有提交记录'); return; }
-  const rows = [['编号', 'SPU', '品类', '原稿页码']];
-  nos.forEach(n => {
-    const d = DATA.find(x => x.no === n) || {};
-    rows.push([n, store[n], d.cat === 'knit' ? '针织' : d.cat === 'woven' ? '梭织' : '亚麻', d.slide || '']);
-  });
-  download('胖达龙类目_特别开款_明细.csv', rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n'), 'text/csv;charset=utf-8');
-  toast('已导出 CSV');
-};
-
-document.getElementById('clearAll').onclick = () => {
-  if(!submitted().length){ toast('没有可清空的内容'); return; }
-  if(!confirm('确定清空全部提交记录？')) return;
-  store = {}; persist();
-  document.querySelectorAll('.card').forEach(c => renderCard(c.dataset.no));
-  syncPanel(); toast('已清空');
-};
-
-/* ---------------- 放大镜（方块区域放大） ---------------- */
-const ZOOM = 3.4;
-const LENS = 186;
-const NAT = {};
-DATA.forEach(d => { NAT[d.no] = d; });
+/* ---------------- 放大镜 ---------------- */
+const ZOOM = 3.4, LENS = 186;
 const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 const preloaded = new Map();
 
 function ensureFull(no){
-  if(preloaded.has(no)) return preloaded.get(no);
-  const img = new Image();
-  img.src = IMG(no);
+  if(preloaded.has(no)) return;
+  const img = new Image(); img.src = IMG(no);
   preloaded.set(no, img);
-  if(preloaded.size > 12){ const k = preloaded.keys().next().value; if(k !== no) preloaded.delete(k); }
-  return img;
+  if(preloaded.size > 14){
+    const k = preloaded.keys().next().value;
+    if(k !== no) preloaded.delete(k);
+  }
 }
 
 document.addEventListener('mouseover', e => {
@@ -2411,13 +1339,11 @@ document.addEventListener('mousemove', e => {
   const L = Math.min(LENS, r.width, r.height);
   lens.style.width = L + 'px'; lens.style.height = L + 'px';
 
-  let x = e.clientX - r.left, y = e.clientY - r.top;
-  x = Math.max(0, Math.min(r.width, x));
-  y = Math.max(0, Math.min(r.height, y));
+  let x = Math.max(0, Math.min(r.width, e.clientX - r.left));
+  let y = Math.max(0, Math.min(r.height, e.clientY - r.top));
   lens.style.left = (x - L / 2) + 'px';
   lens.style.top  = (y - L / 2) + 'px';
 
-  // 卡片内图片是 object-fit:cover，先还原"渲染后图片"的尺寸与偏移，再按 ZOOM 放大
   const sc = Math.max(r.width / d.w, r.height / d.h);
   const W = d.w * sc, H = d.h * sc;
   const offX = (r.width - W) / 2, offY = (r.height - H) / 2;
@@ -2431,26 +1357,29 @@ document.addEventListener('mouseout', e => {
   if(!fig) return;
   if(fig.contains(e.relatedTarget)) return;
   fig.querySelector('.lens').classList.remove('on');
-  fig.style.cursor = '';
 });
 
-/* ---------------- 大图查看（缩放 + 拖动） ---------------- */
+/* ---------------- 大图 ---------------- */
 const lb = document.getElementById('lb');
 const lbImg = document.getElementById('lbImg');
 const lbNo = document.getElementById('lbNo');
 const lbMeta = document.getElementById('lbMeta');
-let sc = 1, tx = 0, ty = 0;
+let sc = 1, tx = 0, ty = 0, curNo = null;
 
 function applyT(){ lbImg.style.transform = `translate(${tx}px,${ty}px) scale(${sc})`; }
 function resetT(){ sc = 1; tx = 0; ty = 0; applyT(); }
 
+const CATNAME = {knit:'针织非束脚长裤', woven:'梭织非束脚长裤', linen:'亚麻 / 仿亚麻长裤'};
+
 function openLb(no){
-  const d = DATA.find(x => x.no === no) || {};
+  const d = NAT[no];
+  if(!d) return;
+  curNo = no;
   lbImg.src = IMG(no);
   lbImg.alt = '编号 ' + no;
   lbNo.textContent = no;
-  lbMeta.textContent = (d.cat === 'knit' ? '针织非束脚长裤' : d.cat === 'woven' ? '梭织非束脚长裤' : '亚麻 / 仿亚麻长裤')
-    + ' · 原稿第 ' + (d.slide || '') + ' 页 · ' + (d.w || '') + '×' + (d.h || '') + ' 原图';
+  lbMeta.textContent = (CATNAME[d.cat] || '') + ' · 原稿第 ' + d.slide + ' 页 · ' +
+    d.w + '×' + d.h + ' 原图';
   resetT();
   lb.classList.add('on');
   document.body.style.overflow = 'hidden';
@@ -2459,17 +1388,30 @@ function closeLb(){
   lb.classList.remove('on');
   lbImg.removeAttribute('src');
   document.body.style.overflow = '';
+  curNo = null;
 }
+function step(dir){
+  if(!curNo) return;
+  const i = ALL.indexOf(curNo);
+  const n = ALL[(i + dir + ALL.length) % ALL.length];
+  openLb(n);
+}
+
 document.addEventListener('click', e => {
   const fig = e.target.closest('.pic');
   if(fig && !e.target.closest('.lens')) openLb(fig.dataset.no);
 });
 document.getElementById('lbClose').onclick = closeLb;
+document.getElementById('lbPrev').onclick = e => { e.stopPropagation(); step(-1); };
+document.getElementById('lbNext').onclick = e => { e.stopPropagation(); step(1); };
 lb.addEventListener('click', e => { if(e.target === lb || e.target.id === 'lbStage') closeLb(); });
-document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeLb(); closePanel(); } });
 
 document.getElementById('zin').onclick = () => { sc = Math.min(5, sc * 1.4); applyT(); };
-document.getElementById('zout').onclick = () => { sc = Math.max(1, sc / 1.4); if(sc === 1){ tx = 0; ty = 0; } applyT(); };
+document.getElementById('zout').onclick = () => {
+  sc = Math.max(1, sc / 1.4);
+  if(sc === 1){ tx = 0; ty = 0; }
+  applyT();
+};
 document.getElementById('zreset').onclick = resetT;
 
 document.getElementById('lbStage').addEventListener('wheel', e => {
@@ -2497,9 +1439,25 @@ lbImg.addEventListener('pointerup', e => {
   try { lbImg.releasePointerCapture(e.pointerId); } catch(err){}
 });
 
-/* ---------------- 初始化 ---------------- */
-document.querySelectorAll('.card').forEach(c => { if(store[c.dataset.no]) renderCard(c.dataset.no); });
-syncPanel();
+document.addEventListener('keydown', e => {
+  if(!lb.classList.contains('on')) return;
+  if(e.key === 'Escape') closeLb();
+  if(e.key === 'ArrowLeft') step(-1);
+  if(e.key === 'ArrowRight') step(1);
+});
+
+/* ---------------- 导航高亮 ---------------- */
+const links = [...document.querySelectorAll('.nav a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+if('IntersectionObserver' in window && secs.length){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(!en.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+    });
+  }, {rootMargin:'-15% 0px -70% 0px'});
+  secs.forEach(s => io.observe(s));
+}
 </script>
 </body>
 </html>
